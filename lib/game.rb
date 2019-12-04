@@ -12,4 +12,5 @@ class Game
   def getInstrucciones
     @instrucciones
   end
+
 end
