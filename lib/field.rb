@@ -1,3 +1,5 @@
+require_relative './errores/invalid_measures'
+
 class Field
 
   def get_rows

@@ -57,8 +57,6 @@ class Instruction
   end
 
   def check_if_the_vehicle_is_out_of_the_field
-    puts @vehicle.get_x_position
-    puts @field.get_columns
     if @vehicle.get_x_position > @field.get_columns
       @vehicle.set_x_position @field.get_columns
     end
