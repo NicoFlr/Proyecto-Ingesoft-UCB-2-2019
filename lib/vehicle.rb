@@ -15,26 +15,26 @@ class Vehicle
   end
 
   def get_x_position
-    @posicionX
+    @posicion_x
   end
 
   def get_y_position
-    @posicionY
+    @posicion_y
   end
 
-  def set_x_position posicionX
-    if posicionX < 0
-      raise InvalidPosition.new
+  def set_x_position posicion_x
+    if posicion_x < 0
+      raise InvalidXPosition.new
     else
-      @posicionX = posicionX
+      @posicion_x = posicion_x
     end
   end
 
-  def set_y_position posicionY
-    if posicionY < 0
-      raise InvalidPosition.new
+  def set_y_position posicion_y
+    if posicion_y < 0
+      raise InvalidYPosition.new
     else
-      @posicionY = posicionY
+      @posicion_y = posicion_y
     end
   end
 
@@ -49,20 +49,20 @@ class Vehicle
     when "w"
       guide "n"
     else
-      raise NoOrientation
+      raise NoOrientation.new
     end
   end
 
   def advance
     case @orientacion
     when "n"
-      set_y_position @posicionY + 1
+      set_y_position @posicion_y + 1
     when "e"
-      set_x_position @posicionX + 1
+      set_x_position @posicion_x + 1
     when "s"
-      set_y_position @posicionY - 1
+      set_y_position @posicion_y - 1
     when "w"
-      set_x_position @posicionX - 1
+      set_x_position @posicion_x - 1
     else
       raise NoOrientation.new
     end

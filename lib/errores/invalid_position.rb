@@ -3,3 +3,11 @@ class InvalidPosition < StandardError
     super("La posicion no es valida")
   end
 end
+
+class InvalidXPosition < InvalidPosition
+
+end
+
+class InvalidYPosition < InvalidPosition
+
+end

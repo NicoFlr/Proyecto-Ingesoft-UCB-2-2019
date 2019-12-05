@@ -1,9 +1,5 @@
-<h1>Proyecto de ingenieria de software</h1>
-<form action="/play">
-  <input type="number" placeholder="filas">
-  <input type="number" placeholder="columnas">
-  <input type="number" value="X">
-  <input type="number" value="Y">
-  <input type="text" placeholder="Instrucciones">
-  <input type="submit">
-</form>
+<%# INSERTAR TODA LA LOGICA / TRAER LA LOGICA DEL JUEGO AQUI? %>
+Con una arena de <%= @instruction.get_field.get_rows %> filas y <%= @instruction.get_field.get_columns %> columnas,
+ el vehiculo empezo en las coordenadas [<%= @initial_coordinate_in_X%>,<%= @initial_coordinate_in_Y%>],
+ y termino en las coordenadas [<%= @instruction.vehicle.get_x_position %>,<%= @instruction.vehicle.get_y_position %>],
+apuntando hacia el <%= @instruction.vehicle.get_orientation %>
