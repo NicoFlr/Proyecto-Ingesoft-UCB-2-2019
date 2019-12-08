@@ -11,20 +11,28 @@ class Field
   end
 
   def set_rows rows
-    if check rows
+    if check_rows rows
       @rows = rows
     end
   end
 
   def set_columns columns
-    if check columns
+    if check_columns columns
       @columns = columns
     end
   end
 
-  def check rows_or_columns
-    if rows_or_columns < 1
-      raise InvalidMeasures.new
+  def check_rows rows
+    if rows < 1
+      raise InvalidXMeasures.new
+    else
+      true
+    end
+  end
+
+  def check_columns columns
+    if columns < 1
+      raise InvalidYMeasures.new
     else
       true
     end

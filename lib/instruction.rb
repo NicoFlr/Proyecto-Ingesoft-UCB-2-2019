@@ -1,5 +1,6 @@
 require_relative './vehicle'
 require_relative './errores/invalid_instruction'
+require_relative './errores/out_of_field'
 
 class Instruction
 
@@ -12,6 +13,7 @@ class Instruction
 
   def execute_instruction instruction
     if (instruction_exist instruction)
+      is_out_of_the_field
       begin
         case instruction
         when @moves[:left]
@@ -62,6 +64,12 @@ class Instruction
     end
     if @vehicle.get_y_position > @field.get_rows
       @vehicle.set_y_position @field.get_rows
+    end
+  end
+
+  def is_out_of_the_field
+    if @vehicle.get_x_position > @field.get_columns or @vehicle.get_y_position > @field.get_rows
+      raise OutOfFieldError.new
     end
   end
 end

@@ -3,13 +3,14 @@ require_relative './lib/instruction'
 require_relative './lib/field'
 require_relative './lib/errores/invalid_position'
 require_relative './lib/errores/invalid_measures'
+require_relative './lib/errores/invalid_instruction'
+require_relative './lib/errores/out_of_field'
 
 get "/" do
   erb :home
 end
 
 post "/play" do
-  puts params
   @instruction = Instruction.new
   field = Field.new
   begin
@@ -30,7 +31,15 @@ post "/play" do
     erb :posicioninvalidax
   rescue InvalidYPosition
     erb :posicioninvaliday
-  rescue InvalidMeasures
-    erb :medidasinvalidas
+  rescue InvalidXMeasures
+    erb :medidasinvalidasfilas
+  rescue InvalidYMeasures
+    erb :medidasinvalidascolumnas
+  rescue InvalidInstruction
+    erb :instruccioninvalida
+  rescue OutOfFieldError
+    erb :fueradeterreno
   end
+
+
 end
