@@ -1,4 +1,5 @@
 <%# INSERTAR TODA LA LOGICA / TRAER LA LOGICA DEL JUEGO AQUI? %>
-Con una arena de <%= @rows%> filas y <%= @columns%> columnas,
+Con una arena de <%= @instruction.get_field.get_rows %> filas y <%= @instruction.get_field.get_columns %> columnas,
  el vehiculo empezo en las coordenadas [<%= @initial_coordinate_in_X%>,<%= @initial_coordinate_in_Y%>],
- y termino en las coordenadas [<%# %>,<%# %>], apuntando hacia el <%# %>
+ y termino en las coordenadas [<%= @instruction.vehicle.get_x_position %>,<%= @instruction.vehicle.get_y_position %>],
+apuntando hacia el <%= @instruction.vehicle.get_orientation %>
