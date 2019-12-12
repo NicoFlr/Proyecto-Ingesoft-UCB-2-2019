@@ -47,3 +47,8 @@ Then("El sistema muestra que el vehiculo esta apuntando al {string}") do |orient
   @orientation = orientacion
 end
 
+Then("El sistema muestra la pagina para configurar la arena") do
+  visit '/setup-arena'
+end
+
+

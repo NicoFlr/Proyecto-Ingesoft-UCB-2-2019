@@ -16,6 +16,7 @@ describe Instruction do
     @instruction.set_position_of_vehicle 3, 0
     @instruction.set_vehicle_orientation "n"
     @instruction.execute_instruction "I"
+    @instruction.execute_instruction "A"
     expect(@instruction.vehicle.get_x_position).to eq(2)
     expect(@instruction.vehicle.get_orientation).to eq("w")
   end
@@ -24,6 +25,7 @@ describe Instruction do
     @instruction.set_position_of_vehicle 3, 0
     @instruction.set_vehicle_orientation "n"
     @instruction.execute_instruction "D"
+    @instruction.execute_instruction "A"
     expect(@instruction.vehicle.get_x_position).to eq(4)
     expect(@instruction.vehicle.get_orientation).to eq("e")
   end
@@ -46,7 +48,9 @@ describe Instruction do
     @instruction.set_vehicle_orientation "n"
     @instruction.execute_instruction "A"
     @instruction.execute_instruction "I"
+    @instruction.execute_instruction "A"
     @instruction.execute_instruction "D"
+    @instruction.execute_instruction "A"
     expect(@instruction.vehicle.get_x_position).to eq(2)
     expect(@instruction.vehicle.get_y_position).to eq(2)
     expect(@instruction.vehicle.get_orientation).to eq("n")
@@ -111,5 +115,21 @@ describe Instruction do
     expect(@instruction.vehicle.get_x_position).to eq(2)
     expect(@instruction.vehicle.get_y_position).to eq(0)
     expect(@instruction.vehicle.get_orientation).to eq("s")
+  end
+
+  it 'should execute a instruction serie like "ADAIAAAAIAD" with the car with position 2, 1 pointing to the west should be in position 2, 0 pointing to the south' do
+    @instruction.set_up_instruction_series 'ADAIAAAAIAD' , 2, 1, "w"
+    @instruction.execute_instruction_series
+    expect(@instruction.vehicle.get_x_position).to eq(0)
+    expect(@instruction.vehicle.get_y_position).to eq(1)
+    expect(@instruction.vehicle.get_orientation).to eq("w")
+  end
+
+  it 'should execute a instruction serie like "ADAIAAAAIAD" with the car with position 2, 1 pointing to the west should be in position 2, 0 pointing to the south' do
+    @instruction.set_up_instruction_series 'ADAIAAAAIA' , 2, 1, "n"
+    @instruction.execute_instruction_series
+    expect(@instruction.vehicle.get_x_position).to eq(2)
+    expect(@instruction.vehicle.get_y_position).to eq(6)
+    expect(@instruction.vehicle.get_orientation).to eq("w")
   end
 end

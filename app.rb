@@ -5,9 +5,22 @@ require_relative './lib/errores/invalid_position'
 require_relative './lib/errores/invalid_measures'
 require_relative './lib/errores/invalid_instruction'
 require_relative './lib/errores/out_of_field'
+require_relative './lib/game'
+
+number = 0
+game = Game.new
 
 get "/" do
-  erb :home
+  erb :vehiclesetup
+end
+
+get "/setup-arena" do
+  erb :arenasetup
+end
+
+post "/addVehicle" do
+  game.set_up_instruction params[:instructions], params[:posX].to_i, params[:posY].to_i, params[:orientation]
+  erb :vehiclesetup
 end
 
 post "/play" do
@@ -40,6 +53,4 @@ post "/play" do
   rescue OutOfFieldError
     erb :fueradeterreno
   end
-
-
 end

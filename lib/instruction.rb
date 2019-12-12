@@ -18,10 +18,8 @@ class Instruction
         case instruction
         when @moves[:left]
           @vehicle.turn_left
-          @vehicle.advance
         when @moves[:right]
           @vehicle.turn_right
-          @vehicle.advance
         when @moves[:front]
           @vehicle.advance
         end
@@ -36,12 +34,12 @@ class Instruction
     end
   end
 
-  def set_position_of_vehicle x, y
+  def set_position_of_vehicle(x, y)
     @vehicle.set_x_position x
     @vehicle.set_y_position y
   end
 
-  def set_vehicle_orientation orientation
+  def set_vehicle_orientation(orientation)
     @vehicle.guide orientation
   end
 
@@ -51,6 +49,18 @@ class Instruction
 
   def get_field
     @field
+  end
+
+  def execute_instruction_series
+    @instruction_series.each_char { |instruction|
+      execute_instruction instruction
+    }
+  end
+
+  def set_up_instruction_series(instruction_series, vehicle_position_in_x, vehicle_position_in_y, orientation)
+    @instruction_series = instruction_series
+    set_position_of_vehicle vehicle_position_in_x, vehicle_position_in_y
+    set_vehicle_orientation orientation
   end
 
   private

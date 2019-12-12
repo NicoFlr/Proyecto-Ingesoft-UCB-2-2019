@@ -10,10 +10,6 @@ class Vehicle
     end
   end
 
-  def orientation_exist orientacion
-    "nwse".include? orientacion
-  end
-
   def get_x_position
     @posicion_x
   end
@@ -85,5 +81,10 @@ class Vehicle
     else
       raise NoOrientation.new
     end
+  end
+
+  private
+  def orientation_exist orientacion
+    "nwse".include? orientacion
   end
 end

@@ -1,16 +1,16 @@
+require_relative './instruction'
+require_relative './field'
+
 class Game
 
   def initialize
     @instrucciones = []
   end
 
-  def add_instruction instruccion
-    @instrucciones.push instruccion
-  end
-
   def get_instruction
     @instrucciones
   end
+
   def set_field field
     @field = field
   end
@@ -19,23 +19,25 @@ class Game
     @field
   end
 
-  def execute
-    if @vehicle_controller != nil
-      @instrucciones.each do |i|
-        @vehicle_controller.execute_instruction i
-      end
+  def get_instruction_by_index index
+    @instrucciones.at index
+  end
+
+  def set_up_instruction instruction_series, vehicle_position_in_x, vehicle_position_in_y, orientation
+    instruction = Instruction.new
+    instruction.set_up_instruction_series instruction_series, vehicle_position_in_y, vehicle_position_in_y, orientation
+    add_instruction instruction
+  end
+
+  def execute_instructions
+    @instrucciones.each do |instruction|
+      instruction.set_field @field
+      instruction.execute_instruction_series
     end
   end
 
-  def set_vehicle_controller controller
-    @vehicle_controller = controller
-  end
-
-  def get_vehicle_controller
-    @vehicle_controller
-  end
-
-  def set_vehicle_controller_to_field
-    @vehicle_controller.set_field @field
+  private
+  def add_instruction instruccion
+    @instrucciones.push instruccion
   end
 end
