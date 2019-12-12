@@ -1,7 +1,3 @@
-PLATFORMS:
-  x86-mingw32
-  ruby 
-  x86_64-linux
 language: ruby
 rvm: 2.4.4
 script:
