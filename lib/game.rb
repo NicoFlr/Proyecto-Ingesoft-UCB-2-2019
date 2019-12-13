@@ -25,7 +25,7 @@ class Game
 
   def set_up_instruction instruction_series, vehicle_position_in_x, vehicle_position_in_y, orientation
     instruction = Instruction.new
-    instruction.set_up_instruction_series instruction_series, vehicle_position_in_y, vehicle_position_in_y, orientation
+    instruction.set_up_instruction_series instruction_series, vehicle_position_in_x, vehicle_position_in_y, orientation
     add_instruction instruction
   end
 
