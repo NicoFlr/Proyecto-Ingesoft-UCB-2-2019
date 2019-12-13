@@ -20,6 +20,7 @@ get "/setup-arena" do
 end
 
 post "/addVehicle" do
+begin
   game.set_up_instruction params[:instructions], params[:posX].to_i, params[:posY].to_i, params[:orientation]
   erb :vehiclesetup
 rescue InvalidXPosition
