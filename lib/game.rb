@@ -33,6 +33,7 @@ class Game
     @instrucciones.each do |instruction|
       instruction.set_field @field
       instruction.execute_instruction_series
+      
     end
   end
 
