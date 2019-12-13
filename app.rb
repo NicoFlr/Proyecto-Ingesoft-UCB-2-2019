@@ -8,18 +8,17 @@ require_relative './lib/errores/invalid_orientation'
 require_relative './lib/errores/out_of_field'
 require_relative './lib/game'
 
-number = 0
 game = Game.new
 
-get "/" do
+get '/' do
   erb :vehiclesetup
 end
 
-get "/setup-arena" do
+get '/setup-arena' do
   erb :arenasetup
 end
 
-post "/addVehicle" do
+post '/addVehicle' do
   begin
     game.set_up_instruction params[:instructions], params[:posX].to_i, params[:posY].to_i, params[:orientation]
     erb :vehiclesetup
@@ -32,23 +31,22 @@ post "/addVehicle" do
   end
 end
 
-post "/play" do
-    @field = Field.new
-    @initial_instructions = game.get_instruction
-    begin
-      @field.set_rows params[:fieldRows].to_i
-      @field.set_columns params[:fieldColumns].to_i
-      game.set_field @field
-      game.execute_instructions
-      @instructions_after = game.get_instruction
-      erb :game
-    rescue InvalidXMeasures
-      erb :medidasinvalidasfilas
-    rescue InvalidYMeasures
-      erb :medidasinvalidascolumnas
-    rescue InvalidInstruction
-      erb :instruccioninvalida
-    rescue OutOfFieldError
-      erb :fueradeterreno
-    end
+post '/play' do
+  @field = Field.new
+  @instructions = game.get_instruction
+  begin
+    @field.set_rows params[:fieldRows].to_i
+    @field.set_columns params[:fieldColumns].to_i
+    game.set_field @field
+    game.execute_instructions
+    erb :game
+  rescue InvalidXMeasures
+    erb :medidasinvalidasfilas
+  rescue InvalidYMeasures
+    erb :medidasinvalidascolumnas
+  rescue InvalidInstruction
+    erb :instruccioninvalida
+  rescue OutOfFieldError
+    erb :fueradeterreno
+  end
 end

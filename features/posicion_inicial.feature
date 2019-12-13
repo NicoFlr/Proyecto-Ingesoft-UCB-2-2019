@@ -19,11 +19,17 @@ Feature:
     When El jugador presiona el boton "jugar"
     Then El sistema le muestra que la arena tiene "7" filas y "5" columnas
 
-  Scenario: El jugador ingresa al menos una coordenada de inicio negativa
+  Scenario: El jugador ingresa al menos una coordenada de inicio negativa en X
     Given ingreso el numero "-2" en el campo "posX"
     And ingreso el numero "3" en el campo "posY"
     And El jugador presiona el boton "GuardarVehiculo"
     Then El sistema le muestra el mensaje de error "Posicion invalida en X (coordenada inicial no puede ser negativa)"
+
+  Scenario: El jugador ingresa al menos una coordenada de inicio negativa en Y
+    Given ingreso el numero "2" en el campo "posX"
+    And ingreso el numero "-3" en el campo "posY"
+    And El jugador presiona el boton "GuardarVehiculo"
+    Then El sistema le muestra el mensaje de error "Posicion invalida en Y (coordenada inicial no puede ser negativa)"
 
   Scenario: El jugador ingresa coordenadas de inicio y fuera de los limites de la arena
     Given ingreso el numero "222" en el campo "posX"

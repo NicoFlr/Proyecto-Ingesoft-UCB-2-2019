@@ -55,4 +55,8 @@ Then("El sistema le muestra que el vehiculo termina apuntando a la direccion {st
   last_response.body.should =~ /#{direccion}/m
 end
 
+Then("El sistema le muestra que el vehiculo termina en las coordenadas {string}") do |coordenadas|
+  last_response.body.should =~ /#{coordenadas}/m
+end
+
 

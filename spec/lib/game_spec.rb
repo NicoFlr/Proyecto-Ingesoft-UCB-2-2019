@@ -26,7 +26,7 @@ describe Game do
       instruction4 = @game.get_instruction_by_index 3
       expect(instruction1.vehicle.get_x_position).to eq(1)
       expect(instruction1.vehicle.get_y_position).to eq(1)
+      expect(instruction1.vehicle.get_orientation).to eq("n")
       @game.execute_instructions
-
   end
 end

@@ -1,9 +1,9 @@
 <p>Con una arena de <%= @field.get_rows() %> filas y <%= @field.get_columns() %> columnas,</p>
 <% cont = 0 %>
-<% while cont < @initial_instructions.size %>
+<% while cont < @instructions.size %>
  <p>el vehiculo <%= cont+1%> 
- Termino en las coordenadas [<%= @instructions_after[cont].get_position_of_vehicle_in_X%> X , <%= @instructions_after[cont].get_position_of_vehicle_in_Y%> Y] ,
- apuntando hacia el <%= @instructions_after[cont].get_vehicle_orientation%>
+ Termino en las coordenadas [ <%= @instructions[cont].get_position_of_vehicle_in_X%> , <%= @instructions[cont].get_position_of_vehicle_in_Y%> ] ,
+ apuntando hacia el <%= @instructions[cont].get_vehicle_orientation%>
  </p>
 <%cont += 1%>
 <%end%>
