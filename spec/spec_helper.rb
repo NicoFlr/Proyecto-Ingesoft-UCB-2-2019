@@ -7,4 +7,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 SimpleCov.start do
   add_filter ".bundle"
   add_filter "template_steps"
+  add_filter "/lib/errores/invalid_instruction.rb"
+  add_filter "/lib/errores/out_of_field.rb"
+  add_filter "/lib/errores/invalid_measures.rb"
 end
