@@ -51,4 +51,8 @@ Then("El sistema muestra la pagina para configurar la arena") do
   visit '/setup-arena'
 end
 
+Then("El sistema le muestra que el vehiculo termina apuntando a la direccion {string}") do |direccion|
+  last_response.body.should =~ /#{direccion}/m
+end
+
 

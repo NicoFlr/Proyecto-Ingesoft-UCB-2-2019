@@ -4,6 +4,7 @@ require_relative './lib/field'
 require_relative './lib/errores/invalid_position'
 require_relative './lib/errores/invalid_measures'
 require_relative './lib/errores/invalid_instruction'
+require_relative './lib/errores/invalid_orientation'
 require_relative './lib/errores/out_of_field'
 require_relative './lib/game'
 
@@ -21,29 +22,25 @@ end
 post "/addVehicle" do
   game.set_up_instruction params[:instructions], params[:posX].to_i, params[:posY].to_i, params[:orientation]
   erb :vehiclesetup
+rescue InvalidXPosition
+  erb :posicioninvalidax
+rescue InvalidYPosition
+  erb :posicioninvaliday
+rescue InvalidOrientation
+  erb :orientacionInvalida
 end
 
 post "/play" do
-  @instruction = Instruction.new
-  field = Field.new
+  @field = Field.new
+
+  @initial_instructions = game.get_instruction
   begin
-    @instruction.set_position_of_vehicle params[:posX].to_i , params[:posY].to_i
-    @instruction.set_vehicle_orientation params[:orientation]
-    @initial_coordinate_in_X = params[:posX].to_i
-    @initial_coordinate_in_Y = params[:posY].to_i
-    field.set_rows params[:fieldRows].to_i
-    field.set_columns params[:fieldColumns].to_i
-    @instruction.set_field field
-    instruction_list = params[:instructions]
-    instruction_list = instruction_list.split('')
-    instruction_list.each { |i|
-      @instruction.execute_instruction i
-    }
+    @field.set_rows params[:fieldRows].to_i
+    @field.set_columns params[:fieldColumns].to_i
+    game.set_field @field
+    game.execute_instructions
+    @instructions_after = game.get_instruction
     erb :game
-  rescue InvalidXPosition
-    erb :posicioninvalidax
-  rescue InvalidYPosition
-    erb :posicioninvaliday
   rescue InvalidXMeasures
     erb :medidasinvalidasfilas
   rescue InvalidYMeasures

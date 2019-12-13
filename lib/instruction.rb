@@ -39,8 +39,20 @@ class Instruction
     @vehicle.set_y_position y
   end
 
+  def get_position_of_vehicle_in_X
+    @vehicle.get_x_position
+  end
+
+  def get_position_of_vehicle_in_Y
+    @vehicle.get_y_position
+  end
+
   def set_vehicle_orientation(orientation)
     @vehicle.guide orientation
+  end
+
+  def get_vehicle_orientation
+    @vehicle.get_orientation
   end
 
   def set_field field

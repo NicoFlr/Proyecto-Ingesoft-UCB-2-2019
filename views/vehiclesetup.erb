@@ -2,17 +2,19 @@
 <form method="post" action="/addVehicle">
 
   <label for="posX">posX</label>
-  <input type="number" name="posX">
+  <input type="number" name="posX" id="posX">
 
   <label for="posY">posY</label>
-  <input type="number" name="posY">
+  <input type="number" name="posY" id="posY">
 
   <label for="instructions">Intrucciones</label>
-  <input type="text" name="instructions">
+  <input type="text" name="instructions" id="instructions">
 
   <label for="orietation">Orientacion</label>
-  <input type="text" name="orientation">
-  <button id="Guardar Vehiculo">Guardar vehiculo</button>
+  <input type="text" name="orientation" id="orientation">
+
+
+  <button id="GuardarVehiculo">Guardar vehiculo</button>
 </form>
 <form method="get" action="/setup-arena">
   <input type="submit" value="siguiente" id="siguiente">

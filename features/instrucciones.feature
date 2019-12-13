@@ -11,12 +11,12 @@ Feature:
 
   Scenario: El jugador ingresa instrucciones validas (Solo pueden ser: A (avanzar) , D (girar derecha) , I (girar izquierda))
     And ingreso las instrucciones "AADA" en el campo "instructions"
-    And El jugador presiona el boton "guardar vehiculo"
+    And El jugador presiona el boton "GuardarVehiculo"
     When El jugador presiona el boton "siguiente"
     Then El sistema muestra la pagina para configurar la arena
 
   Scenario: El jugador ingresa instrucciones no validas (Solo pueden ser: A (avanzar) , D (girar derecha) , I (girar izquierda))
     And ingreso las instrucciones "Aiehrgf784" en el campo "instructions"
-    And El jugador presiona el boton "guardar vehiculo"
+    And El jugador presiona el boton "GuardarVehiculo"
     When El jugador presiona el boton "siguiente"
     Then El sistema le muestra el mensaje de error "Instrucciones no correctas (Solo usar A,D,I sin espacios o separadores)"
